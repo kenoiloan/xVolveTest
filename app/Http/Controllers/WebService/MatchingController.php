@@ -1,10 +1,11 @@
 <?php
 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\WebService;
 
 use App\Component\MatchComponent;
 use App\Component\RatingComponent;
+use App\Http\Controllers\Controller;
 use App\Users;
 class MatchingController extends Controller
 {
@@ -33,6 +34,6 @@ class MatchingController extends Controller
         $match = new MatchComponent($mMen,$wWomen,$menPref,$womenPref);
         $dataMatched = $match->calMatch();
 
-        return view('match',['dataMatched' =>$dataMatched]);
+        return response()->json($dataMatched,200);
     }
 }

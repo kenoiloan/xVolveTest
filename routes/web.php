@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/match',function (){
+Route::get('user/match',function (){
     return view('match',['dataMatched' => null]);
 });
-Route::post('/matched','MatchingController@matching');
+Route::post('user/matched','MatchingController@matching');

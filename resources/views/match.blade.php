@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <form action="{{url('matched')}}" name ="matchingForm" method="post">
+            <form action="{{url('user/matched')}}" name ="matchingForm" method="post">
                 @csrf
                 <div class="form-group">
                     <div class="col-sm-6">
