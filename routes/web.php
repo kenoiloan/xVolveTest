@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('user/match',function (){
-    return view('match',['dataMatched' => null]);
+    return view('match',['dataMatched' => null])->middleware('trust');
 });
-Route::post('user/matched','MatchingController@matching');
+Route::post('user/matched','MatchingController@matching')->middleware('trust');
