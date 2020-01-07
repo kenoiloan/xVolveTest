@@ -5,6 +5,7 @@ namespace App\Http\Controllers\WebService;
 
 use App\Component\MatchComponent;
 use App\Component\RatingComponent;
+use App\Component\UserComponent;
 use App\Http\Controllers\Controller;
 use App\Users;
 class MatchingController extends Controller
@@ -19,6 +20,11 @@ class MatchingController extends Controller
     }
     public function index(){
 
+    }
+    public function userDating($userId){
+        $userComp = new UserComponent();
+        $dating = $userComp->calUserMatch($userId);
+            return response()->json($dating,200);
     }
     public function matching(){
         // Bind data example for test process

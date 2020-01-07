@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Component\MatchComponent;
 use Tests\TestCase;
 use App\Component\RatingComponent;
 use App\Users;
@@ -31,12 +32,36 @@ class MatchTest extends TestCase
 
         $rating = new RatingComponent();
         $testResult = $rating->rating($mMen,$wWomen);
-        $resultSample = array(array(2,10,6,8,4),array(4,6,2,8,10),array(8,4,6,2,10),array(2,4,6,8,10),array(2,10,6,8,4));
+        $resultSample = array(array(2,10,6,8,4),
+                              array(4,2,6,8,10),
+                              array(6,4,2,8,10),
+                              array(8,4,6,2,10),
+                              array(2,10,6,8,4));
 
-        $this->assertEquals($testResult,$resultSample);
+        $this->assertEquals($resultSample,$testResult);
     }
     public function testMatching(){
 
-        $this->assertTrue();
+        // Bind data example for test process
+        $mMen = $this->user->getData('male');
+        $wWomen = $this->user->getData('female');
+
+        //Matrix rating base on Prefer attribute of User
+        $rating = new RatingComponent();
+        $menPref = $rating->rating($mMen,$wWomen);
+        $womenPref =  $rating->rating($wWomen,$mMen);
+
+        //Call Component
+        $match = new MatchComponent($mMen,$wWomen,$menPref,$womenPref);
+        $dataMatched = $match->calMatch();
+        $dataMatchedSample =  array('User #1 is matched with User #2',
+                                    'User #3 is matched with User #4',
+                                    'User #5 is matched with User #6',
+                                    'User #7 is matched with User #8',
+                                    'User #9 is matched with User #10');
+        $this->assertEquals($dataMatchedSample,$dataMatched);
+    }
+    public function testUserDating(){
+
     }
 }

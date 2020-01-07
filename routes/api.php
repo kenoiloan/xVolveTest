@@ -17,3 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get("user/matched","WebService\MatchingController@matching");
+Route::get("user/dating/{id}","WebService\MatchingController@userDating");

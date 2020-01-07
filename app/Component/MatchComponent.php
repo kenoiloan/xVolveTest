@@ -3,6 +3,9 @@
 
 namespace App\Component;
 
+use App\DatingDetails;
+use Illuminate\Support\Facades\DB;
+use App\Users;
 
 class MatchComponent
 {
